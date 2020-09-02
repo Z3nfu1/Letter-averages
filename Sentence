@@ -1,0 +1,58 @@
+import java.util.Scanner;
+
+class Sentence
+{
+  private String sentence;
+  public String all;
+  private String alphabet;
+  private int total;
+  private int instances;
+  private String letter;
+
+  public Sentence(String sentence)
+  {
+    this.sentence = sentence;
+    all = "";
+    total = 0;
+    alphabet = " abcdefghijklmnopqrstuvwxyz";
+    instances = 0;
+  }
+
+  public void askLetters()
+  {
+  Scanner input = new Scanner(System.in);
+  System.out.println("What letter averages would you like to find?");
+  letter = input.next();
+  while (!letter.equals("no"))
+  {
+    all += letter;
+    System.out.println("Any other letters you would like to find?");
+    letter = input.next();
+  }
+  }
+
+  public void findLetters()
+  {
+    for (int i = 0; i < all.length(); i++)
+    {
+      String letter = all.substring(i, i+1);
+      for (int j = 0; j < sentence.length(); j++)
+      {
+        if (letter.equals(sentence.substring(j, j+1)))
+        {
+          total += alphabet.indexOf(letter);
+          instances++;
+        }
+      }
+    }
+    
+  }
+
+  public String getAverage()
+  {
+    int average = total/instances;
+    return "Your letter average is: " + alphabet.substring(average, average+1);
+  }
+
+
+}
